@@ -1,0 +1,33 @@
+from typing import Any
+
+from fastapi import Depends, Response
+from pydantic import Field
+
+from app.utils import AppModel
+
+from ..adapters.jwt_service import JWTData
+from ..service import Service, get_service
+from . import router
+from .dependencies import parse_jwt_user_data
+
+class UpdateShanyrakRequest(AppModel):
+    type: str
+    price: float
+    address: str
+    area: str
+    rooms_count: int
+    description: str
+
+
+
+@router.patch("/{shanyrak_id: str}")
+def create_shanyraks(
+    shanyrak_id: str,
+    input: UpdateShanyrakRequest,
+    jwt_data: JWTData = Depends(parse_jwt_user_data),
+    svc: Service = Depends(get_service),
+) -> dict[str, str]:
+    
+    svc.repository.update_shanyrak(shanyrak_id, input.dict())
+
+    return Response(status_code=200)
