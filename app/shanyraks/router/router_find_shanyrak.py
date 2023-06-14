@@ -23,7 +23,7 @@ class FindShanyrakRequest(AppModel):
 
 
 
-@router.get("/{shanyrak_id: str}", response_model=FindShanyrakResponse)
+@router.get("/{shanyrak_id:str}", response_model=FindShanyrakResponse)
 def create_shanyraks(
     shanyrak_id: str,
     jwt_data: JWTData = Depends(parse_jwt_user_data),

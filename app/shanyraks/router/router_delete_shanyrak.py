@@ -14,7 +14,7 @@ class UpdateShanyrakRequest(AppModel):
     shanyrak_id: str
 
 
-@router.delete("/{shanyrak_id: str}")
+@router.delete("/{shanyrak_id:str}")
 def create_shanyraks(
     shanyrak_id: str,
     jwt_data: JWTData = Depends(parse_jwt_user_data),

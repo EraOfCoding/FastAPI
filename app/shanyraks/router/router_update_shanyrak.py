@@ -20,7 +20,7 @@ class UpdateShanyrakRequest(AppModel):
 
 
 
-@router.patch("/{shanyrak_id: str}")
+@router.patch("/{shanyrak_id:str}")
 def create_shanyraks(
     shanyrak_id: str,
     input: UpdateShanyrakRequest,
